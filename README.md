@@ -84,7 +84,7 @@ bash weight_download.sh
 ### Finetune the trained downstream model on private client data with FL
 Leveraging the provided model weights, users have the flexibility to select any FL library of their choice for the fine-tuning process. One only needs to load the downstream model weight as the initialization weight for FL training.
 
-We provide a simple FL simulator named EasyFL to reproduce the results we shown in the paper. Detailed information about the EasyFL package and its functionalities can be found within its accompanying README document.
+We provide a simple FL simulator named EasyFL to reproduce the results we shown in the paper. Detailed information about the EasyFL package and its functionalities can be found within its accompanying [README](https://github.com/zhang-tuo-pdf/GPT-FL/blob/main/EasyFL/README.md) document.
 
 For the image-related experiments, specifics regarding the integration of the GPT-FL framework, including how the model weights and datasets are orchestrated, can be found [here](https://github.com/zhang-tuo-pdf/GPT-FL/blob/main/EasyFL/server/server_sim.py#L219).
 
