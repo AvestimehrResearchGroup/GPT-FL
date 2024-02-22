@@ -14,3 +14,7 @@ By doing this, the proposed GPT-FL is able to combine the advantages of previous
 Paper Link: https://arxiv.org/abs/2306.02210
 
 The GPT-FL package contains:
+
+<div align="center">
+ <img src="intro_v3.pdf" width="600px">
+</div>
