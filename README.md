@@ -71,4 +71,15 @@ python generate_image.py 2 1 syn_dataset class_prompt cifar10
 waiting for construction
 
 ### Train downstream model on synthetic data
+Our package includes a centralized training module, encapsulated within the training_main.py script, specifically designed for training on synthetic image datasets. Please refer to [FedAudio](https://github.com/zhang-tuo-pdf/FedAudio) package for synthetic audio training.
+
+Given the substantial volume of synthetic data generated, direct uploading to this repository or other cloud storage services is impractical. If the synthetic dataset utilized in our study sparks your interest, we invite you to contact us via email for detailed discussions and potential access.
+
+Instead, we release the weight of the downstream model that was trained with synthetic data. Specifically, these weights correspond to a model trained on a dataset threefold the size of its real-data counterpart (denoted as "3x Synthetic" within our publication). 
+To procure these weights, execute the command below:
+```
+bash weight_download.sh
+```
+
+#### 
 
