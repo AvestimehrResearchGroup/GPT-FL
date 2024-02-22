@@ -14,7 +14,61 @@ By doing this, the proposed GPT-FL is able to combine the advantages of previous
 Paper Link: https://arxiv.org/abs/2306.02210
 
 The GPT-FL package contains:
+* Data generation pipelines with foundational models (e.g., StableDiffusion, SpeechT5, etc).
+* Synthetic data training module for generating downstream models.
+* A simple federated learning simulator with popular aggregation functions.
 
 <div align="center">
  <img src="intro_v3-1.png" width="1000px">
 </div>
+
+## Installation
+To begin with, please clone this repo and install the conda environment:
+```
+git clone https://github.com/zhang-tuo-pdf/GPT-FL.git
+cd GPT-FL
+conda env create -f environment.yml
+conda activate SyntheticData
+```
+
+## Usage
+### Create prompts based on the label names
+The initial phase of the GPT-FL package is dedicated to the generation of synthetic data for downstream model training. This process begins with the creation of prompts derived from specified label names. For example, using the CIFAR-10 dataset as a reference point:
+```
+cd synthetic_data_generation
+python text_gen.py cifar10 200
+```
+In the text_gen.py file, we leverage [Google's T5 fine-tuned on CommonGen for Generative Commonsense Reasoning](https://huggingface.co/mrm8488/t5-base-finetuned-common_gen) as the prompt generator. Users are encouraged to experiment with alternative models to potentially enhance prompt quality.
+
+Furthermore, our methodology includes the utilization of ChatGPT 3.5 to craft high-quality prompts, as demonstrated by the following question-and-answer example aimed at generating image descriptions:
+```
+Q: " _ _ _ _ airplane _ _ _ _" Please fill in the blank and make it as a prompt to generate the image
+A: Large commercial airplane in the blue sky.
+```
+
+### Generate synthetic data
+#### Image generation
+In this project, we use the [stable-diffusion-2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1) as an image data generator. Currently, the pipeline supports generating synthetic datasets for CIFAR-10, CIFAR-100, Flowers102, Food101. For example, generating synthetic CIFAR-10 is:
+```
+python generate_image.py 5 0 syn_dataset class_prompt cifar10
+```
+The generate_image.py script accepts five principal arguments, detailed as follows:
+* gpu_number: Denotes the total number of GPUs allocated for the task. The script distributes the image generation workload evenly across the specified GPUs to enhance efficiency.
+* device_num: Specifies the individual GPU to be utilized for the current execution.
+* save_path: Indicates the directory path where the generated images will be stored.
+* generate_method: Applicable exclusively for generating the Food101 dataset.
+* dataset: Specifies the target dataset for which synthetic images will be generated.
+
+In adherence to the principles of parallel computing, the naming convention for each generated image is structured as follows: args.save_path + '/' + class_name + '_train_' + str(device_num) + '_' + str(j) + '.png'. This format supports seamless parallel dataset generation across multiple GPUs. For instance, to generate a dataset utilizing two GPUs, the commands can be executed in parallel as shown:
+```
+# For GPU 0 (Process 1)
+python generate_image.py 2 0 syn_dataset class_prompt cifar10
+# For GPU 1 (Process 2)
+python generate_image.py 2 1 syn_dataset class_prompt cifar10
+```
+
+#### Audio generation
+waiting for construction
+
+### Train downstream model on synthetic data
+
