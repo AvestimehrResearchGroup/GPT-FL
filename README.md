@@ -81,5 +81,43 @@ To procure these weights, execute the command below:
 bash weight_download.sh
 ```
 
-#### 
+### Finetune the trained downstream model on private client data with FL
+Leveraging the provided model weights, users have the flexibility to select any FL library of their choice for the fine-tuning process. One only needs to load the downstream model weight as the initialization weight for FL training.
+
+We provide a simple FL simulator named EasyFL to reproduce the results we shown in the paper. Detailed information about the EasyFL package and its functionalities can be found within its accompanying README document.
+
+For the image-related experiments, specifics regarding the integration of the GPT-FL framework, including how the model weights and datasets are orchestrated, can be found [here](https://github.com/zhang-tuo-pdf/GPT-FL/blob/main/EasyFL/server/server_sim.py#L219).
+
+Please refer to the [FedAudio](https://github.com/zhang-tuo-pdf/FedAudio?tab=readme-ov-file#linkage-with-gpt-fl) package for the audio-related experiments.
+
+
+## Contact
+If you like our works, please cite our paper in your publications.
+```
+@article{Zhang2023GPTFLGP,
+  title={GPT-FL: Generative Pre-trained Model-Assisted Federated Learning},
+  author={Tuo Zhang and Tiantian Feng and Samiul Alam and Mi Zhang and Shrikanth S. Narayanan and Salman Avestimehr},
+  journal={ArXiv},
+  year={2023},
+  volume={abs/2306.02210},
+  url={https://api.semanticscholar.org/CorpusID:259075747}
+}
+```
+
+```
+@article{Zhang2022FedAudioAF,
+  title={FedAudio: A Federated Learning Benchmark for Audio Tasks},
+  author={Tuo Zhang and Tiantian Feng and Samiul Alam and Sunwoo Lee and Mi Zhang and Shrikanth S. Narayanan and Salman Avestimehr},
+  journal={ICASSP 2023 - 2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  year={2022},
+  pages={1-5},
+  url={https://api.semanticscholar.org/CorpusID:253224220}
+}
+```
+Feel free to contact us!
+
+Tuo Zhang tuozhang@usc.edu
+
+Tiantian Feng tiantiaf@usc.edu
+
 
