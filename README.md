@@ -81,6 +81,21 @@ The generate_gcommands.py script accepts the following arguments:
 * generate_method: Class prompt-The input is the spoken word; Multi-speaker-The input is the spoken word and augmented with speaker embedding sampled from Matthijs/cmu-arctic-xvectors huggingface dataset;
 
 
+#### Audio generation
+In the audio generation, we utilized [audioldm](https://huggingface.co/cvssp/audioldm) to generate the audio sound. The user needs to download [ESC50](https://github.com/karolpiczak/ESC-50/tree/master) before the generation, as the script requires the reading the groundtruth csv from this dataset. We want to highlight that the user can re-use the pipeline to generate audio sounds from other datasets by inputing the correct domain list. To perform the generation, run the following:
+
+```
+cd synthetic_data_generation
+python generate_esc50.py --gpu_number 5 --raw_data_dir ../ESC-50-master --device_num 0 --save_path ../syn_dataset --generate_method class_prompt
+```
+The generate_esc50.py script accepts the following arguments:
+* gpu_number: Denotes the total number of GPUs allocated for the task. The script distributes the audio generation workload evenly across the specified GPUs to enhance efficiency.
+* device_num: Specifies the individual GPU to be utilized for the current execution.
+* raw_data_dir: Indicates the directory path where the raw ESC50 dataset will be stored.
+* save_path: Indicates the directory path where the generated audio will be stored.
+* generate_method: Class prompt-The input is the class name; multi-domain adds the sound context, like in the studio, on top of class prompt; ucg adds randomness in the generation by controling guidance scales on top of class prompt;
+
+
 ### Train downstream model on synthetic data
 Our package includes a centralized training module, encapsulated within the training_main.py script, specifically designed for training on synthetic image datasets. Please refer to [FedAudio](https://github.com/zhang-tuo-pdf/FedAudio) package for synthetic audio training.
 
