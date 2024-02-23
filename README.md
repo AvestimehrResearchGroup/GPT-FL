@@ -67,8 +67,19 @@ python generate_image.py 2 0 syn_dataset class_prompt cifar10
 python generate_image.py 2 1 syn_dataset class_prompt cifar10
 ```
 
-#### Audio generation
-waiting for construction
+#### Speech/Spoken Words generation
+In the spoken word generation, we utilized [speecht5-tts](https://huggingface.co/microsoft/speecht5_tts) to generate the speech. We manually add the 35 unique spoken words from the Google Speech Commands dataset in the generation script. We want to highlight that the user can re-use the pipeline to generate any English speech by modifying the input in the generation in synthetic_data_generation/generate_gcommands.py. To perform the generation, run the following:
+
+```
+cd synthetic_data_generation
+python generate_gcommands.py --gpu_number 5 --device_num 0 --save_path ../syn_dataset --generate_method multi_speaker
+```
+The generate_gcommands.py script accepts the following arguments:
+* gpu_number: Denotes the total number of GPUs allocated for the task. The script distributes the speech generation workload evenly across the specified GPUs to enhance efficiency.
+* device_num: Specifies the individual GPU to be utilized for the current execution.
+* save_path: Indicates the directory path where the generated speech will be stored.
+* generate_method: Class prompt-The input is the spoken word; Multi-speaker-The input is the spoken word and augmented with speaker embedding sampled from Matthijs/cmu-arctic-xvectors huggingface dataset;
+
 
 ### Train downstream model on synthetic data
 Our package includes a centralized training module, encapsulated within the training_main.py script, specifically designed for training on synthetic image datasets. Please refer to [FedAudio](https://github.com/zhang-tuo-pdf/FedAudio) package for synthetic audio training.
