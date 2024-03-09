@@ -1,3 +1,6 @@
+# This is a copied version of models.py
+# (https://github.com/pipilurj/DynaFed/blob/main/models.py)
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
