@@ -1,3 +1,6 @@
+# This is a modified version of where_to_begin/benchmarks/utils.py, where to change the class Resent
+# https://github.com/facebookresearch/where_to_begin/blob/main/benchmarks/utils.py#L65
+
 import torch
 import torch.nn as nn
 import numpy as np
