@@ -3,10 +3,10 @@ import torch
 from torch.utils.data import Dataset
 from PIL import Image
 import glob
-import timm
-from timm.data import transforms_factory
-from timm.data import resolve_data_config
-from timm.data.transforms_factory import create_transform
+# import timm
+# from timm.data import transforms_factory
+# from timm.data import resolve_data_config
+# from timm.data.transforms_factory import create_transform
 from torch.utils.data import DataLoader
 import numpy as np
 
